@@ -1,0 +1,4 @@
+elasticsearch
+=============
+
+Elasticsearch [vagrant + puppet]
