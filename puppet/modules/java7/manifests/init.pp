@@ -20,8 +20,7 @@ class java7 {
   
   exec { 'java7-apt-get-update':
     command => 'apt-get update',
-    path => '/usr/bin:/bin',
-    unless => 'apt-key list | grep -c EEA14886'
+    path => '/usr/bin:/bin'
   } ->
 
   exec { 'java7-licence-agreement-1':
