@@ -23,15 +23,26 @@ class { 'elasticsearch':
   }
 }
 
-#class { 'apache': }
+class { 'puppi':
+  install_dependencies => false,
+}
 
-#apache::vhost { 'master.of.muppets':
-#  port    => '80',
-#  docroot => '/var/www'
-#}
+
+class { 'apache': }
+
+apache::vhost { 'master.of.muppets':
+  port    => '80',
+  docroot => '/var/www'
+}
+
+class { 'php': }
+
+Exec['apt-get-update'] -> Class['puppi'] -> Class['apache'] -> Class['php']
 
 Class['java7'] -> Class['elasticsearch']
 
+include puppi
+include php
 include stdlib
 include apt
 include apache
